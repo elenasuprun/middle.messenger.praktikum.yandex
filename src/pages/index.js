@@ -1,0 +1,9 @@
+export { default as ChatPage } from '/src/pages/chatPage.hbs?raw';
+export { default as LoginPage } from '/src/pages/loginPage.hbs?raw';
+export { default as ErrorPage } from '/src/pages/errorPage.hbs?raw';
+export { default as SignUpPage } from '/src/pages/signUpPage.hbs?raw';
+export { default as HeaderPage } from '/src/pages/header.hbs?raw';
+export { default as ProfilePage } from '/src/pages/profilePage.hbs?raw';
+export { default as NotFoundPage } from '/src/pages/notFoundPage.hbs?raw';
+export { default as ChangeInfoPage } from '/src/pages/changeInfoPage.hbs?raw';
+export { default as ChangePasswordPage } from '/src/pages/changePasswordPage.hbs?raw';
