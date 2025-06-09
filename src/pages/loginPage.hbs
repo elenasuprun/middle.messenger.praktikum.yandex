@@ -1,0 +1,30 @@
+<div class="app wrapper__center">
+    <form class="auth__form wrapper__center">
+        <div class="auth__form__block">
+            <p class="auth__form__title">Вход</p>
+            {{> Input
+                    class="auth__form__textbox"
+                    name="login"
+                    label="Логин"
+                    type="text"
+            }}
+            {{> Input
+                    class="auth__form__textbox"
+                    label="Пароль"
+                    name="password"
+                    type="password"
+            }}
+        </div>
+        <div class="auth__form__block">
+            {{> Button
+                    class='form__submit'
+                    text='Авторизоваться'
+                    type="submit"
+            }}
+            {{> Link
+                    class='form__link'
+                    text='Нет аккаунта?'
+            }}
+        </div>
+    </form>
+</div>

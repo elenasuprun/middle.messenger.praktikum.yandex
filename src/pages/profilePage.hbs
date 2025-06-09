@@ -1,0 +1,27 @@
+<div class="profile__wrapper">
+    <aside class="profile__navigate">
+        <div class="profile__navigate--icon wrapper__center"></div>
+    </aside>
+    <main>
+        <div class="profile__info--container">
+            {{> Avatar}}
+            <div class="profile__list profile__list--info">
+                {{#if profileList.length}}
+                    {{#each profileList as |field|}}
+                        <div class="profile__list--item">
+                            <span>{{field.label}}</span>
+                            <span class="profile__list--value">{{field.value}}</span>
+                        </div>
+                    {{/each}}
+                {{/if}}
+            </div>
+            <nav class="profile__list">
+                <ul>
+                    <li class="profile__list--item">{{> Link text="Изменить данные"}}</li>
+                    <li class="profile__list--item">{{> Link text="Изменить пароль"}}</li>
+                    <li class="profile__list--item out">{{> Link text="Выйти"}}</li>
+                </ul>
+            </nav>
+        </div>
+    </main>
+</div>
