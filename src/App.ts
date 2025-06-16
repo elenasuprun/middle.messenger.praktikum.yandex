@@ -1,12 +1,12 @@
-import * as Handlebars from "handlebars";
-import { default as Pages } from "./pages";
-import Link from "./components/link.ts";
-import Chat from "./components/chat.ts";
-import Input from "./components/input.ts";
-import Avatar from "./components/avatar.ts";
-import Button from "./components/button.ts";
-import Failure from "./components/failure.ts";
-import profileList from "./constants/profileList.ts";
+import * as Handlebars from 'handlebars';
+import { default as Pages } from './pages';
+import Link from './components/link.ts';
+import Chat from './components/chat.ts';
+import Input from './components/input.ts';
+import Avatar from './components/avatar.ts';
+import Button from './components/button.ts';
+import Failure from './components/failure.ts';
+import profileList from './constants/profileList.ts';
 
 Handlebars.registerPartial('Link', Link);
 Handlebars.registerPartial('Chat', Chat);
@@ -70,7 +70,7 @@ export class App {
     }
 
     changePage(page: string | undefined): void {
-        if(!page) {
+        if (!page) {
             return;
         }
         this.state = page;
@@ -84,10 +84,10 @@ export class App {
                 link.addEventListener('click', (e: Event) => {
                     e.preventDefault();
                     this.changePage((e.target as HTMLLinkElement).dataset.page);
-                })
-            })
-        } catch(e) {
-            throw new Error('Cannot add event listener')
+                });
+            });
+        } catch (e) {
+            throw new Error('Cannot add event listener\n' + e);
         }
     }
 }
