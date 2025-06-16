@@ -1,12 +1,12 @@
-import Handlebars from "handlebars";
-import * as Pages from "./pages";
-import Link from "./components/link.js";
-import Chat from "./components/chat.js";
-import Input from "./components/input.js";
-import Avatar from "./components/avatar.js";
-import Button from "./components/button.js";
-import Failure from "./components/failure.js";
-import profileList from "./constants/profileList.js";
+import * as Handlebars from "handlebars";
+import { default as Pages } from "./pages";
+import Link from "./components/link.ts";
+import Chat from "./components/chat.ts";
+import Input from "./components/input.ts";
+import Avatar from "./components/avatar.ts";
+import Button from "./components/button.ts";
+import Failure from "./components/failure.ts";
+import profileList from "./constants/profileList.ts";
 
 Handlebars.registerPartial('Link', Link);
 Handlebars.registerPartial('Chat', Chat);
@@ -16,22 +16,24 @@ Handlebars.registerPartial('Button', Button);
 Handlebars.registerPartial('Failure', Failure);
 
 export class App {
-    appElement; headerElement;
-    state = {
-        currentPage: 'chat'
-    };
+    appElement: HTMLElement | null;
+    headerElement: HTMLElement | null;
+    state: string = 'chat';
 
     constructor() {
         this.appElement = document.getElementById('app');
         this.headerElement = document.getElementById('header');
-        this.headerElement.innerHTML = Handlebars.compile(Pages.HeaderPage)();
+        if (this.headerElement) {
+            this.headerElement.innerHTML = Handlebars.compile(Pages.HeaderPage)(null);
+        }
 
         this.addListeners();
     }
 
-    render() {
-        let template, context;
-        switch (this.state.currentPage) {
+    render(): void {
+        let template: HandlebarsTemplateDelegate = Handlebars.compile(Pages.NotFoundPage);
+        let context: Record<string, unknown> = {};
+        switch(this.state) {
             case '404':
                 template = Handlebars.compile(Pages.NotFoundPage);
                 break;
@@ -56,27 +58,36 @@ export class App {
                 break;
             case 'change-info':
                 template = Handlebars.compile(Pages.ChangeInfoPage);
-                context = {profileList};
+                context = { profileList };
                 break;
             case 'chat':
                 template = Handlebars.compile(Pages.ChatPage);
                 break;
         }
-        this.appElement.innerHTML = template(context);
+        if (this.appElement) {
+            this.appElement.innerHTML = template(context);
+        }
     }
 
-    changePage(page) {
-        this.state.currentPage = page;
+    changePage(page: string | undefined): void {
+        if(!page) {
+            return;
+        }
+        this.state = page;
         this.render();
     }
 
-    addListeners() {
+    addListeners(): void {
         const navLinks = document.querySelectorAll('.nav__list--item');
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                this.changePage(e.target.dataset.page);
+        try {
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e: Event) => {
+                    e.preventDefault();
+                    this.changePage((e.target as HTMLLinkElement).dataset.page);
+                })
             })
-        })
+        } catch(e) {
+            throw new Error('Cannot add event listener')
+        }
     }
 }

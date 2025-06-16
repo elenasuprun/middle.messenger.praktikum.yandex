@@ -9,12 +9,15 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "prebuild": "tsc --noEmit",
     "start": "npm run build && node server.cjs",
     "start vite": "vite build && node server.cjs"
   },
   "license": "ISC",
   "devDependencies": {
+    "@types/handlebars": "^4.0.40",
     "sass": "^1.86.2",
+    "typescript": "^5.8.3",
     "vite": "^6.3.1"
   },
   "dependencies": {
