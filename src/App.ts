@@ -50,7 +50,7 @@ export class App {
                 template = Handlebars.compile(Pages.ProfilePage);
                 context = {
                     profileList,
-                    username: "Иван"
+                    username: 'Иван'
                 };
                 break;
             case 'change-password':
@@ -78,16 +78,18 @@ export class App {
     }
 
     addListeners(): void {
-        const navLinks = document.querySelectorAll('.nav__list--item');
-        try {
-            navLinks.forEach(link => {
-                link.addEventListener('click', (e: Event) => {
-                    e.preventDefault();
-                    this.changePage((e.target as HTMLLinkElement).dataset.page);
-                });
-            });
-        } catch (e) {
-            throw new Error('Cannot add event listener\n' + e);
+        const nav = document.querySelector('.nav__list');
+
+        if (!nav) {
+            throw new Error('Navigation is not defined');
         }
+
+        nav.addEventListener('click', (e: Event) => {
+            const target = e.target as HTMLElement;
+            if (target.tagName === 'A') {
+                e.preventDefault();
+                this.changePage(target.dataset.page);
+            }
+        });
     }
 }
