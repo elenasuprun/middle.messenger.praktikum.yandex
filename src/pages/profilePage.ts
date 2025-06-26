@@ -21,35 +21,32 @@ export class ProfilePage extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<div class="profile__wrapper">
-                <aside class="profile__navigate">
-                    <div class="profile__navigate--icon wrapper__center"></div>
-                </aside>
-                <main>
-                    <div class="profile__info--container">
-                        {{{ Avatar }}}
-                        <div class="profile__list profile__list--info">
-                            {{#if profileList.length}}
-                                {{#each profileList as |field|}}
-                                    <div class="profile__list--item">
-                                        <span>{{field.label}}</span>
-                                        <span class="profile__list--value">{{field.value}}</span>
-                                    </div>
-                                {{/each}}
-                            {{/if}}
+        return `<div class="profile__wrapper">
+                    <aside class="profile__navigate">
+                        <div class="profile__navigate--icon wrapper__center"></div>
+                    </aside>
+                    <main>
+                        <div class="profile__info--container">
+                            {{{ Avatar }}}
+                            <div class="profile__list profile__list--info">
+                                {{#if profileList.length}}
+                                    {{#each profileList as |field|}}
+                                        <div class="profile__list--item">
+                                            <span>{{field.label}}</span>
+                                            <span class="profile__list--value">{{field.value}}</span>
+                                        </div>
+                                    {{/each}}
+                                {{/if}}
+                            </div>
+                            <nav class="profile__list">
+                                <ul>
+                                    <li class="profile__list--item">{{{ LinkChangeProfile }}}</li>
+                                    <li class="profile__list--item">{{{ LinkChangePassword }}}</li>
+                                    <li class="profile__list--item out">{{{ LinkSignOut }}}</li>
+                                </ul>
+                            </nav>
                         </div>
-                        <nav class="profile__list">
-                            <ul>
-                                <li class="profile__list--item">{{{ LinkChangeProfile }}}</li>
-                                <li class="profile__list--item">{{{ LinkChangePassword }}}</li>
-                                <li class="profile__list--item out">{{{ LinkSignOut }}}</li>
-                            </ul>
-                        </nav>
-                    </div>
-                </main>
-            </div>
-            `
-        );
+                    </main>
+                </div>`;
     }
 }

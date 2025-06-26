@@ -12,12 +12,10 @@ export class NotFoundPage extends Block {
     }
 
     override render(): string {
-        return this.compile(`
-            <div class="app wrapper__center">
-                <div class="wrapper__center">
-                    {{{ Failure }}}
-                </div>
-            </div>`
-        );
+        return `<div class="app wrapper__center">
+                    <div class="wrapper__center">
+                        {{{ Failure }}}
+                    </div>
+                </div>`;
     }
 }

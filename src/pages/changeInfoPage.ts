@@ -22,20 +22,18 @@ export class ChangeInfoPage extends Block {
         });
     }
 
-    override render(): void {
-        return this.compile(
-            `<div class="profile__wrapper">
-                <aside class="profile__navigate">
-                    <div class="profile__navigate--icon wrapper__center"></div>
-                </aside>
-                <form class="profile__info--container">
-                    {{{ Avatar }}}
-                    <div class="profile__list profile__list--info">
-                        {{{ InputProfileList }}}
-                    </div>
-                    {{{ ButtonSubmit }}}
-                </form>
-            </div>`
-        );
+    override render(): string {
+        return  `<div class="profile__wrapper">
+                    <aside class="profile__navigate">
+                        <div class="profile__navigate--icon wrapper__center"></div>
+                    </aside>
+                    <form class="profile__info--container">
+                        {{{ Avatar }}}
+                        <div class="profile__list profile__list--info">
+                            {{{ InputProfileList }}}
+                        </div>
+                        {{{ ButtonSubmit }}}
+                    </form>
+                </div>`;
     }
 }

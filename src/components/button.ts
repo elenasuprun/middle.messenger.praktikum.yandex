@@ -14,13 +14,12 @@ export class Button extends Block {
     }
 
     render(): any {
-        return this.compile(`
-                <button class="{{className}}"
+        return `<button class="{{className}}"
                         type="{{type}}"
                         {{#if isDisabled}}
                             disabled
                         {{/if}}>
                     {{text}}
-                </button>`);
+                </button>`;
     }
 }

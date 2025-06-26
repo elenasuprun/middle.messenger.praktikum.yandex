@@ -14,10 +14,9 @@ export class Link extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<a class="{{className}}" href="{{url}}" data-page="{{page}}">
-                {{text}}
-            </a>`);
+        return `<a class="{{className}}" href="{{url}}" data-page="{{page}}">
+                    {{text}}
+                </a>`;
     }
 
 }

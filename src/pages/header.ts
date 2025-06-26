@@ -10,13 +10,11 @@ export class HeaderPage extends Block {
     }
 
     override render(): string {
-        return this.compile(`
-            <nav>
-                <ul class="nav__list">
-                    {{{ NavigationLinkList }}}
-                </ul>
-            </nav>`
-        );
+        return `<nav>
+                    <ul class="nav__list">
+                        {{{ NavigationLinkList }}}
+                    </ul>
+                </nav>`;
     }
 }
 
@@ -27,11 +25,9 @@ class NavigationLink extends Block {
         });
     }
 
-    override render(): void {
-        return this.compile(
-            `<li class="nav__list--item">
-                {{{ NavigationLink }}}
-            </li>`
-        );
+    override render(): string {
+        return `<li class="nav__list--item">
+                    {{{ NavigationLink }}}
+                </li>`;
     }
 }

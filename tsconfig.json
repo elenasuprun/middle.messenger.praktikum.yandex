@@ -11,10 +11,7 @@
     "sourceMap": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "paths": {
-      "@pages/*": ["./src/pages/*"]
-    }
+    "noUnusedParameters": true
   },
   "include": ["src/**/*"]
 }

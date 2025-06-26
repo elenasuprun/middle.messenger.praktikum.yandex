@@ -13,8 +13,7 @@ export class Chat extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<div class="chat__list--item">
+        return `<div class="chat__list--item">
                     <div class="chat__list--item__avatar--wrapper">
                         <div class="chat__list--item__avatar"></div>
                     </div>
@@ -29,7 +28,6 @@ export class Chat extends Block {
                             <p class="chat__list--item__message">{{ message }}</p>
                         {{/if}}
                     </div>
-                </div>`
-        );
+                </div>`;
     }
 }

@@ -21,12 +21,10 @@ export class Failure extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<div class="failure__container">
-                <p class="failure__code">{{ code }}</p>
-                <p class="failure__message">{{ message }}</p>
-                {{{ Link }}}
-            </div>`
-        );
+        return `<div class="failure__container">
+                    <p class="failure__code">{{ code }}</p>
+                    <p class="failure__message">{{ message }}</p>
+                    {{{ Link }}}
+                </div>`;
     }
 }

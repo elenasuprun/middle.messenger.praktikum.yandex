@@ -32,31 +32,29 @@ export class ChangePasswordPage extends Block {
         });
     }
 
-    override render(): void {
-        return this.compile(
-            `<div class="profile__wrapper">
-                <aside class="profile__navigate">
-                    <div class="profile__navigate--icon wrapper__center"></div>
-                </aside>
-                <form class="profile__info--container">
-                    {{{ Avatar }}}
-                    <div class="profile__list profile__list--info">
-                        <div class="profile__list--item">
-                            <span>Старый пароль</span>
-                            {{{ InputOldPassword }}}
+    override render(): string {
+        return `<div class="profile__wrapper">
+                    <aside class="profile__navigate">
+                        <div class="profile__navigate--icon wrapper__center"></div>
+                    </aside>
+                    <form class="profile__info--container">
+                        {{{ Avatar }}}
+                        <div class="profile__list profile__list--info">
+                            <div class="profile__list--item">
+                                <span>Старый пароль</span>
+                                {{{ InputOldPassword }}}
+                            </div>
+                            <div class="profile__list--item">
+                                <span>Новый пароль</span>
+                                {{{ InputNewPassword }}}
+                            </div>
+                            <div class="profile__list--item">
+                                <span>Повторите новый пароль</span>
+                                {{{ InputConfirmPassword }}}
+                            </div>
                         </div>
-                        <div class="profile__list--item">
-                            <span>Новый пароль</span>
-                            {{{ InputNewPassword }}}
-                        </div>
-                        <div class="profile__list--item">
-                            <span>Повторите новый пароль</span>
-                            {{{ InputConfirmPassword }}}
-                        </div>
-                    </div>
-                    {{{ ButtonSubmit }}}
-                </form>
-            </div>`
-        );
+                        {{{ ButtonSubmit }}}
+                    </form>
+                </div>`;
     }
 }

@@ -165,7 +165,7 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
     }
 
     private _render(): void {
-        const block = this.render() as DocumentFragment;
+        const block = this.compile(this.render()) as DocumentFragment;
 
         this._removeEvents();
 

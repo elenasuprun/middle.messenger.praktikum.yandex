@@ -35,20 +35,18 @@ export class LoginPage extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<div class="app wrapper__center">
-                <form class="auth__form wrapper__center">
-                    <div class="auth__form__block">
-                        <p class="auth__form__title">{{title}}</p>
-                        {{{ InputLogin }}}
-                        {{{ InputPassword }}}
-                    </div>
-                    <div class="auth__form__block">
-                        {{{ ButtonSubmit }}}
-                        {{{ Link }}}
-                    </div>
-                </form>
-            </div>`
-        );
+        return `<div class="app wrapper__center">
+                    <form class="auth__form wrapper__center">
+                        <div class="auth__form__block">
+                            <p class="auth__form__title">{{title}}</p>
+                            {{{ InputLogin }}}
+                            {{{ InputPassword }}}
+                        </div>
+                        <div class="auth__form__block">
+                            {{{ ButtonSubmit }}}
+                            {{{ Link }}}
+                        </div>
+                    </form>
+                </div>`;
     }
 }

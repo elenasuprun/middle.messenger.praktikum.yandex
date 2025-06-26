@@ -9,10 +9,8 @@ export class InputInfo extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<div class="profile__list--item">
-                {{{ Input }}}
-            </div>`
-        );
+        return `<div class="profile__list--item">
+                    {{{ Input }}}
+                </div>`;
     }
 }

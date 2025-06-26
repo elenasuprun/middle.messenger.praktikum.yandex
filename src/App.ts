@@ -1,12 +1,12 @@
-import { ErrorPage } from '@pages/errorPage.ts';
-import { NotFoundPage } from '@pages/notFoundPage.ts';
-import { HeaderPage } from '@pages/header.ts'
-import { LoginPage } from '@pages/loginPage.ts';
-import { SignUpPage } from '@pages/signUpPage.ts';
-import { ChatPage } from '@pages/chatPage.ts';
-import { ChangePasswordPage } from '@pages/changePasswordPage.ts';
-import { ChangeInfoPage } from '@pages/changeInfoPage.ts';
-import { ProfilePage } from '@pages/profilePage.ts';
+import { ErrorPage } from './pages/errorPage.ts';
+import { NotFoundPage } from './pages/notFoundPage.ts';
+import { HeaderPage } from './pages/header.ts';
+import { LoginPage } from './pages/loginPage.ts';
+import { SignUpPage } from './pages/signUpPage.ts';
+import { ChatPage } from './pages/chatPage.ts';
+import { ChangePasswordPage } from './pages/changePasswordPage.ts';
+import { ChangeInfoPage } from './pages/changeInfoPage.ts';
+import { ProfilePage } from './pages/profilePage.ts';
 
 export class App {
     appElement: HTMLElement | null;

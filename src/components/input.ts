@@ -18,21 +18,19 @@ export class Input extends Block {
     }
 
     override render(): string {
-        return this.compile(
-            `<label class="{{labelClassName}}">
-                {{label}}
-                <input
-                    class="{{inputClassName}}"
-                    type="{{type}}"
-                    name="{{name}}"
-                    {{#if placeholder}}
-                        placeholder="{{placeholder}}"
+        return `<label class="{{labelClassName}}">
+                    {{label}}
+                    <input
+                        class="{{inputClassName}}"
+                        type="{{type}}"
+                        name="{{name}}"
+                        {{#if placeholder}}
+                            placeholder="{{placeholder}}"
+                        {{/if}}
+                    >
+                    {{#if isInvalid}}
+                        <span class="message message__error">{{message}}</span>
                     {{/if}}
-                >
-                {{#if isInvalid}}
-                    <span class="message message__error">{{message}}</span>
-                {{/if}}
-            </label>
-        `);
+                </label>`;
     }
 }
