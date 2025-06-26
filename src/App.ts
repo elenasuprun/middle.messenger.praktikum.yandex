@@ -1,19 +1,12 @@
-import * as Handlebars from 'handlebars';
-import { default as Pages } from './pages';
-import Link from './components/link.ts';
-import Chat from './components/chat.ts';
-import Input from './components/input.ts';
-import Avatar from './components/avatar.ts';
-import Button from './components/button.ts';
-import Failure from './components/failure.ts';
-import profileList from './constants/profileList.ts';
-
-Handlebars.registerPartial('Link', Link);
-Handlebars.registerPartial('Chat', Chat);
-Handlebars.registerPartial('Input', Input);
-Handlebars.registerPartial('Avatar', Avatar);
-Handlebars.registerPartial('Button', Button);
-Handlebars.registerPartial('Failure', Failure);
+import { ErrorPage } from '@pages/errorPage.ts';
+import { NotFoundPage } from '@pages/notFoundPage.ts';
+import { HeaderPage } from '@pages/header.ts'
+import { LoginPage } from '@pages/loginPage.ts';
+import { SignUpPage } from '@pages/signUpPage.ts';
+import { ChatPage } from '@pages/chatPage.ts';
+import { ChangePasswordPage } from '@pages/changePasswordPage.ts';
+import { ChangeInfoPage } from '@pages/changeInfoPage.ts';
+import { ProfilePage } from '@pages/profilePage.ts';
 
 export class App {
     appElement: HTMLElement | null;
@@ -24,48 +17,44 @@ export class App {
         this.appElement = document.getElementById('app');
         this.headerElement = document.getElementById('header');
         if (this.headerElement) {
-            this.headerElement.innerHTML = Handlebars.compile(Pages.HeaderPage)(null);
+            this.headerElement.appendChild(new HeaderPage().getContent());
         }
 
         this.addListeners();
     }
 
     render(): void {
-        let template: HandlebarsTemplateDelegate = Handlebars.compile(Pages.NotFoundPage);
-        let context: Record<string, unknown> = {};
+        if (!this.appElement) {
+            return;
+        }
+        this.appElement.innerHTML = '';
         switch(this.state) {
             case '404':
-                template = Handlebars.compile(Pages.NotFoundPage);
+                this.appElement.appendChild(new NotFoundPage().getContent());
                 break;
             case '500':
-                template = Handlebars.compile(Pages.ErrorPage);
+                this.appElement.appendChild(new ErrorPage().getContent());
                 break;
             case 'login':
-                template = Handlebars.compile(Pages.LoginPage);
+                this.appElement.appendChild(new LoginPage().getContent());
                 break;
             case 'sign-up':
-                template = Handlebars.compile(Pages.SignUpPage);
+                this.appElement.appendChild(new SignUpPage().getContent());
                 break;
             case 'profile':
-                template = Handlebars.compile(Pages.ProfilePage);
-                context = {
-                    profileList,
+                this.appElement.appendChild(new ProfilePage({
                     username: 'Иван'
-                };
+                }).getContent());
                 break;
             case 'change-password':
-                template = Handlebars.compile(Pages.ChangePasswordPage);
+                this.appElement.appendChild(new ChangePasswordPage().getContent());
                 break;
             case 'change-info':
-                template = Handlebars.compile(Pages.ChangeInfoPage);
-                context = { profileList };
+                this.appElement.appendChild(new ChangeInfoPage().getContent());
                 break;
             case 'chat':
-                template = Handlebars.compile(Pages.ChatPage);
+                this.appElement.appendChild(new ChatPage().getContent());
                 break;
-        }
-        if (this.appElement) {
-            this.appElement.innerHTML = template(context);
         }
     }
 

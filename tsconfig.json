@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "dist",
-    "target": "es2016",
+    "target": "es2020",
     "module": "commonjs",
     "strictNullChecks": true,
     "noImplicitAny": true,
@@ -11,7 +11,10 @@
     "sourceMap": true,
     "isolatedModules": true,
     "noUnusedLocals": true,
-    "noUnusedParameters": true
+    "noUnusedParameters": true,
+    "paths": {
+      "@pages/*": ["./src/pages/*"]
+    }
   },
   "include": ["src/**/*"]
 }
