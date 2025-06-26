@@ -2,6 +2,7 @@ import { Block } from '../general/block.ts';
 import { Link } from '../components/link.ts';
 import { Input } from '../components/input.ts';
 import { Chat } from '../components/chat.ts';
+import { Message } from '../components/message.ts';
 
 export class ChatPage extends Block {
     constructor() {
@@ -26,6 +27,19 @@ export class ChatPage extends Block {
                 type: 'text',
                 name: 'message'
             }),
+            Message: new Message({
+                className: 'chat__space__main--message',
+                time: '11:56',
+                text: `<span>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</span>
+                        <br>
+                        <br>
+                    <span>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</span>`
+            }),
+            Reply: new Message({
+                className: 'chat__space__main--reply',
+                time: '12:00',
+                text: `<span>Круто!</span>`
+            }),
             chatName: 'Вадим'
         });
     }
@@ -49,7 +63,12 @@ export class ChatPage extends Block {
                             </div>
                             <div class="chat__space__header--menu"></div>
                         </header>
-                        <main></main>
+                        <main class="chat__space__main">
+                            <div class="chat__space__main--wrapper">
+                                {{{ Message }}}
+                                {{{ Reply }}}
+                            </div>
+                        </main>
                         <footer class="chat__space__footer">
                             <div class="chat__space__footer--clip"></div>
                             {{{ InputMessage }}}
