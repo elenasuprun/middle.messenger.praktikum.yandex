@@ -8,3 +8,7 @@
 - `npm run dev` — запуск версии для разработчика,
 - `npm run start` — билд с запуском сервера,
 - `npm run build` — сборка версии.
+
+## Полезные команды
+- `npx stylelint "src/styles/main.scss"` - запуск проверки стилей через stylelint
+- `npx tsc --noEmit` - запуск проверки typescript
