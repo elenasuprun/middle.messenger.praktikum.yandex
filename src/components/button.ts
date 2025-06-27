@@ -13,7 +13,7 @@ export class Button extends Block {
         super(props);
     }
 
-    render(): any {
+    render(): string {
         return `<button class="{{className}}"
                         type="{{type}}"
                         {{#if isDisabled}}

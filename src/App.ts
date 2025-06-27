@@ -7,11 +7,12 @@ import { ChatPage } from './pages/chatPage.ts';
 import { ChangePasswordPage } from './pages/changePasswordPage.ts';
 import { ChangeInfoPage } from './pages/changeInfoPage.ts';
 import { ProfilePage } from './pages/profilePage.ts';
+import { Nullable } from './types/nullable.ts';
 
 export class App {
-    appElement: HTMLElement | null;
-    headerElement: HTMLElement | null;
-    state: string = 'chat';
+    appElement: Nullable<HTMLElement>;
+    headerElement: Nullable<HTMLElement>;
+    state: string = 'login';
 
     constructor() {
         this.appElement = document.getElementById('app');

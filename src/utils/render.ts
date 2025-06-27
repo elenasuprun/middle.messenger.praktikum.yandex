@@ -1,6 +1,7 @@
 import { Block } from '../general/block.ts';
+import { Nullable } from '../types/nullable.ts';
 
-export function render<TClass extends Block>(query: string, block: TClass): Element | null {
+export function render<TClass extends Block>(query: string, block: TClass): Nullable<Element> {
     const root = document.querySelector(query);
     if (!root) {
         return null;

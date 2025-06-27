@@ -1,6 +1,7 @@
 import { EventBus } from './eventBus.ts';
 import { v4 as makeUUID } from 'uuid';
 import * as Handlebars from 'handlebars';
+import { Nullable } from '../types/nullable.ts';
 
 type Meta = {
     tagName: string;
@@ -22,7 +23,7 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
     protected readonly lists: Record<string | symbol, unknown[]>;
 
     protected _element: HTMLElement;
-    protected _id: string | null = null;
+    protected _id: Nullable<string> = null;
 
     get element(): HTMLElement {
         return this._element;
@@ -54,8 +55,8 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
         this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
     }
 
-    compile(template: string): any {
-        const propsAndStubs: Record<string, any> = { ...this.props };
+    compile(template: string): DocumentFragment {
+        const propsAndStubs: Record<string, unknown> = { ...this.props };
 
         Object.entries(this.children).forEach(([key, child]: [string, Block]) => {
             propsAndStubs[key] = `<div data-id="${child._id}"></div>`;
@@ -108,7 +109,8 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
     }
 
     // переопределяются при наследовании
-    render(): any {
+    render(): string {
+        return '';
     }
 
     componentDidMount(): void {
@@ -167,15 +169,15 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
     private _render(): void {
         const block = this.compile(this.render()) as DocumentFragment;
 
-        this._removeEvents();
+        this.removeEvents();
 
         this._element.innerHTML = '';
         this._element = block.firstElementChild as HTMLElement;
 
-        this._addEvents();
+        this.addEvents();
     }
 
-    private _addEvents(): void {
+    protected addEvents(): void {
         const { events } = this._meta.props;
 
         if (!events) {
@@ -183,11 +185,11 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
         }
 
         for (const [type, listener] of Object.entries(events)) {
-            this._element.addEventListener(type, listener);
+            this.element.addEventListener(type, listener);
         }
     }
 
-    private _removeEvents(): void {
+    protected removeEvents(): void {
         const { events } = this._meta.props;
 
         if (!events) {
@@ -195,7 +197,7 @@ export class Block<TProps extends Record<string | symbol, unknown> = {}> {
         }
 
         for (const [type, listener] of Object.entries(events)) {
-            this._element.removeEventListener(type, listener);
+            this.element.removeEventListener(type, listener);
         }
     }
 

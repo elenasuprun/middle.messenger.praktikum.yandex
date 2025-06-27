@@ -16,7 +16,7 @@ export class EventBus {
             .filter(cb => cb !== callback);
     }
 
-    emit(eventName: string, ...args: any[]): void {
+    emit(eventName: string, ...args: unknown[]): void {
         if (!this.listeners[eventName]) {
             throw new Error(`Event ${eventName} is not defined`);
         }

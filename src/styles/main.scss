@@ -126,11 +126,16 @@ body {
 }
 
 .message {
-    display: block;
+    display: none;
     margin-top: 1rem;
 
     &__error {
-        color: var(--error);
+        border-color: var(--error) !important;
+
+        & + .message {
+            display: block;
+            color: var(--error);
+        }
     }
 }
 
