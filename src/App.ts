@@ -7,7 +7,8 @@ import { ChatPage } from './pages/chatPage.ts';
 import { ChangePasswordPage } from './pages/changePasswordPage.ts';
 import { ChangeInfoPage } from './pages/changeInfoPage.ts';
 import { ProfilePage } from './pages/profilePage.ts';
-import { Nullable } from './types/nullable.ts';
+import { Nullable } from './utils/types/nullable.ts';
+import { Routes } from './utils/enums/routes.ts';
 
 export class App {
     appElement: Nullable<HTMLElement>;
@@ -30,30 +31,30 @@ export class App {
         }
         this.appElement.innerHTML = '';
         switch(this.state) {
-            case '404':
+            case Routes.Error404:
                 this.appElement.appendChild(new NotFoundPage().getContent());
                 break;
-            case '500':
+            case Routes.Error500:
                 this.appElement.appendChild(new ErrorPage().getContent());
                 break;
-            case 'login':
+            case Routes.Login:
                 this.appElement.appendChild(new LoginPage().getContent());
                 break;
-            case 'sign-up':
+            case Routes.SignUp:
                 this.appElement.appendChild(new SignUpPage().getContent());
                 break;
-            case 'profile':
+            case Routes.Profile:
                 this.appElement.appendChild(new ProfilePage({
                     username: 'Иван'
                 }).getContent());
                 break;
-            case 'change-password':
+            case Routes.ChangePassword:
                 this.appElement.appendChild(new ChangePasswordPage().getContent());
                 break;
-            case 'change-info':
+            case Routes.ChangeInfo:
                 this.appElement.appendChild(new ChangeInfoPage().getContent());
                 break;
-            case 'chat':
+            case Routes.Chat:
                 this.appElement.appendChild(new ChatPage().getContent());
                 break;
         }

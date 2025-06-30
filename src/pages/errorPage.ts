@@ -1,5 +1,5 @@
-import { Block } from '../general/block.ts';
-import { Failure } from '../components/failure.ts';
+import { Block } from '../utils/classes/block.ts';
+import { Failure } from '../components/Failure/failure.ts';
 
 export class ErrorPage extends Block {
     constructor() {

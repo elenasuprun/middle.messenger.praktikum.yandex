@@ -1,7 +1,7 @@
-import { Block } from '../general/block.ts';
-import { Avatar } from '../components/avatar.ts';
-import { Link } from '../components/link.ts';
-import profileList from '../constants/profileList.ts';
+import { Block } from '../utils/classes/block.ts';
+import { Avatar } from '../components/Avatar/avatar.ts';
+import { Link } from '../components/Link/link.ts';
+import profileList from '../utils/constants/profileList.ts';
 
 export class ProfilePage extends Block {
     constructor(props: { username?: string }) {

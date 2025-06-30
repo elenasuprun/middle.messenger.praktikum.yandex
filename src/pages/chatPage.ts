@@ -1,8 +1,8 @@
-import { Block } from '../general/block.ts';
-import { Link } from '../components/link.ts';
-import { Input } from '../components/input.ts';
-import { Chat } from '../components/chat.ts';
-import { Message } from '../components/message.ts';
+import { Block } from '../utils/classes/block.ts';
+import { Link } from '../components/Link/link.ts';
+import { Input } from '../components/Input/input.ts';
+import { Chat } from '../components/Chat/chat.ts';
+import { Message } from '../components/Message/message.ts';
 
 export class ChatPage extends Block {
     constructor() {

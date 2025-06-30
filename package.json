@@ -9,9 +9,12 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prebuild": "tsc --noEmit",
     "start": "npm run build && node server.cjs",
-    "start vite": "vite build && node server.cjs"
+    "start vite": "vite build && node server.cjs",
+    "prebuild": "tsc --noEmit",
+    "eslint": "eslint \"src/**/*.[jt]s\"",
+    "stylelint": "stylelint \"src/**/*.scss\"",
+    "lint": "npm run prebuild && npm run eslint && npm run stylelint"
   },
   "license": "ISC",
   "devDependencies": {

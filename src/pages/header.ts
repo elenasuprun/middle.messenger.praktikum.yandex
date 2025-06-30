@@ -1,6 +1,7 @@
-import { Block } from '../general/block.ts';
-import { navigationList } from '../constants/navigation.ts';
-import { Link, TLink } from '../components/link.ts';
+import { Block } from '../utils/classes/block.ts';
+import { navigationList } from '../utils/constants/navigation.ts';
+import { Link } from '../components/Link/link.ts';
+import { TLink } from '../components/Link/types.ts';
 
 export class HeaderPage extends Block {
     constructor() {

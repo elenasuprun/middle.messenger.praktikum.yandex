@@ -1,6 +1,6 @@
-import { Block } from '../general/block.ts';
-import { OnSubmit } from '../functions/onSubmit.ts';
-import { SignUpForm } from '../components/signUpForm.ts';
+import { Block } from '../utils/classes/block.ts';
+import { OnSubmit } from '../utils/functions/onSubmit.ts';
+import { SignUpForm } from '../components/SignUpForm/signUpForm.ts';
 
 export class SignUpPage extends Block {
     constructor() {
