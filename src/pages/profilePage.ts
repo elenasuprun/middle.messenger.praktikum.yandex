@@ -7,7 +7,7 @@ export class ProfilePage extends Block {
     constructor(props: { username?: string }) {
         super({
             profileList,
-            Avatar: new Avatar({ username: props.username }),
+            Avatar: new Avatar({ username: props?.username }),
             LinkChangeProfile: new Link({
                 text: 'Изменить данные',
             }),

@@ -3,6 +3,7 @@ import { Input } from '../Input/input.ts';
 import { Button } from '../Button/button.ts';
 import { Link } from '../Link/link.ts';
 import { TLoginForm } from './types.ts';
+import { Routes } from '../../utils/enums/routes.ts';
 
 export class LoginForm extends Block {
     constructor(props: Partial<TLoginForm>) {
@@ -30,7 +31,8 @@ export class LoginForm extends Block {
             }),
             Link: new Link({
                 className: 'form__link',
-                text: 'Нет аккаунта?'
+                text: 'Нет аккаунта?',
+                url: Routes.SignUp
             })
         });
     }

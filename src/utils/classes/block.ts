@@ -123,6 +123,14 @@ export abstract class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
+    show(): void {
+        this.element.style.display = 'block';
+    }
+
+    hide(): void {
+        this.element.style.display = 'none';
+    }
+
     private _makePropsProxy(props: BlockProps): ProxyHandler<BlockProps> {
         return new Proxy(props, {
             get: <K extends keyof BlockProps>(target: BlockProps, prop: K): unknown => {
