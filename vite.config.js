@@ -5,7 +5,7 @@ import {fileURLToPath} from "url";
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
-    assetsInclude: ['**/*.hbs', '**/*.svg'],
+    assetsInclude: ['**/*.svg'],
     assetsInlineLimit: 0,
     base: '/',
     build: {

@@ -1,0 +1,106 @@
+.profile {
+    &__wrapper {
+        display: flex;
+        height: calc(100vh - 4rem);
+        width: 100vw;
+    }
+
+    &__navigate {
+        position: relative;
+        width: var(--navigate-width);
+        height: 100%;
+        background: var(--block-bg);
+        border-right: var(--border);
+
+        &--icon {
+            background: url("/static/arrow.svg") no-repeat;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        & + div {
+            width: calc(100% - var(--navigate-width));
+            position: relative;
+        }
+    }
+
+    &__info {
+        &--container {
+            position: absolute;
+            top: 10rem;
+            left: 50%;
+            transform: translate(-50%);
+            max-height: 72rem;
+            width: 51rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+        }
+    }
+
+    &__list {
+        width: 100%;
+
+        & > ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        &--item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            font-size: 1.3rem;
+            line-height: 1.3rem;
+
+            &:not(:last-child) {
+                border-bottom: var(--border);
+            }
+
+            & a {
+                text-decoration: none;
+            }
+
+            &.out a {
+                color: var(--error);
+            }
+        }
+
+        &--value {
+            color: var(--text-light);
+        }
+
+        &--info {
+            margin-bottom: 6rem;
+        }
+    }
+
+    &__textbox {
+        border: none;
+
+        &__with--input {
+            display: flex;
+            flex-direction: row;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+            white-space: nowrap;
+        }
+
+        & > input {
+            width: 100%;
+            border: none;
+            padding: .5rem 0;
+            text-align: right;
+            color: var(--text-light);
+        }
+
+        & > .message {
+            margin-top: 0;
+            margin-left: 1rem;
+        }
+    }
+}
