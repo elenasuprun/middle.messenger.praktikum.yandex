@@ -21,7 +21,7 @@ export abstract class Block {
     public eventBus: () => EventBus;
 
     protected readonly props: ProxyHandler<BlockProps>;
-    protected readonly children: Record<string | symbol, unknown>;
+    protected readonly children: BlockProps;
     protected readonly lists: Record<string | symbol, unknown[]>;
 
     protected _element: HTMLElement;
@@ -33,7 +33,7 @@ export abstract class Block {
 
     private readonly _meta: Meta;
 
-    protected constructor(propsAndChildrenAndLists: BlockProps, tagName = 'div') {
+    protected constructor(propsAndChildrenAndLists: BlockProps = {}, tagName = 'div') {
         const eventBus = new EventBus();
         this.eventBus = () => eventBus;
 
@@ -110,7 +110,9 @@ export abstract class Block {
         Object.assign(this.props, newProps);
     }
 
-    abstract render(): string;
+    render(): string {
+        return '';
+    };
 
     componentDidMount(): void {
     }

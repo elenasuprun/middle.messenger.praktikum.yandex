@@ -1,15 +1,20 @@
-import { Block } from '../utils/classes/block.ts';
-import { Link } from '../components/Link/link.ts';
-import { Input } from '../components/Input/input.ts';
-import { Chat } from '../components/Chat/chat.ts';
-import { Message } from '../components/Message/message.ts';
+import { Block } from '../../utils/classes/block.ts';
+import { Link } from '../../components/Link/link.ts';
+import { Input } from '../../components/Input/input.ts';
+import { Chat } from '../../components/Chat/chat.ts';
+import { Message } from '../../components/Message/message.ts';
+import { ChatController } from './chat.controller.ts';
+import { Routes } from '../../utils/enums/routes.ts';
 
 export class ChatPage extends Block {
+    private _controller = new ChatController();
+
     constructor() {
         super({
             LinkHelp: new Link({
                 className: 'chat__header--link',
-                text: 'Помощь'
+                text: 'Профиль',
+                url: Routes.Profile,
             }),
             InputSearch: new Input({
                 labelClassName: 'chat__header--search',
@@ -30,18 +35,16 @@ export class ChatPage extends Block {
             Message: new Message({
                 className: 'chat__space__main--message',
                 time: '11:56',
-                text: `<span>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</span>
-                        <br>
-                        <br>
-                    <span>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</span>`
+                text: ''
             }),
             Reply: new Message({
                 className: 'chat__space__main--reply',
                 time: '12:00',
-                text: `<span>Круто!</span>`
+                text: ''
             }),
             chatName: 'Вадим'
         });
+        this._controller.getChats();
     }
 
     override render(): string {

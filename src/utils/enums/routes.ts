@@ -1,7 +1,7 @@
 export const enum Routes {
     Error404 = '/404',
     Error500 = '/500',
-    Login = '/login',
+    Login = '/',
     SignUp = '/sign-up',
     Profile = '/profile',
     ChangePassword = '/change-password',

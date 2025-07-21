@@ -2,14 +2,15 @@ import { Block } from './block.ts';
 import { Nullable } from '../types/nullable.ts';
 import { isEqual } from '../functions/isEqual.ts';
 import { render } from '../functions/render.ts';
+import { BlockClassType } from '../types/blockClassType.ts';
 
 export class Route {
     private _pathname: string;
-    private _blockClass: typeof Block;
+    private _blockClass: BlockClassType;
     private _block: Nullable<Block> = null;
     private _props: Record<string, unknown>;
 
-    constructor(pathname: string, view: typeof Block, props: Record<string, unknown> = {}) {
+    constructor(pathname: string, view: BlockClassType, props: Record<string, unknown> = {}) {
         this._pathname = pathname;
         this._blockClass = view;
         this._block = null;
@@ -29,7 +30,7 @@ export class Route {
         }
     }
 
-    match(pathname: string): Boolean {
+    match(pathname: string): boolean {
         return isEqual(pathname, this._pathname);
     }
 

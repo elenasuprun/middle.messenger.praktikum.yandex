@@ -2,6 +2,8 @@ import { CheckValidity } from './checkValidity.ts';
 
 export const ToggleClass = (
     element: HTMLInputElement, className = 'message__error'
-): void => {
-    element.classList.toggle(className, !CheckValidity(element));
+): boolean => {
+    const check = CheckValidity(element)
+    element.classList.toggle(className, !check);
+    return check;
 };

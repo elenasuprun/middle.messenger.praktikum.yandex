@@ -5,16 +5,23 @@ const enum HttpMethods {
     PUT = 'PUT'
 }
 
-type HttpOptions = {
+export type HttpOptions = {
     method: HttpMethods;
     headers: Record<string, string>;
     data: object;
     timeout: number;
 }
 
-type HttpRequest = (url: string, options: Partial<HttpOptions>) => Promise<XMLHttpRequest>;
+type HttpRequest = (url: string, options?: Partial<HttpOptions>) => Promise<XMLHttpRequest>;
 
-export class HTTP {
+export class HTTPTransport {
+    private static HOST = 'https://ya-praktikum.tech/api/v2';
+    private _path = '';
+
+    constructor(path: string) {
+        this._path = path;
+    }
+
     get = this._createMethod(HttpMethods.GET);
 
     put = this._createMethod(HttpMethods.PUT);
@@ -24,7 +31,9 @@ export class HTTP {
     delete = this._createMethod(HttpMethods.DELETE);
 
     private _createMethod(method: HttpMethods): HttpRequest {
-        return (url: string, options = {}) => this._request(url, { ...options, method });
+        return (url: string, options = {}) => {
+            return this._request(HTTPTransport.HOST + this._path + url, { ...options, method });
+        };
     }
 
     private _request(url: string, options: Partial<HttpOptions> = {}): Promise<XMLHttpRequest> {
@@ -53,11 +62,12 @@ export class HTTP {
             xhr.onabort = reject;
             xhr.onerror = reject;
             xhr.ontimeout = reject;
+            xhr.withCredentials = true;
 
             if (method === HttpMethods.GET) {
                 xhr.send();
             } else {
-                xhr.send(data as XMLHttpRequestBodyInit);
+                xhr.send(JSON.stringify(data) as XMLHttpRequestBodyInit);
             }
         });
     };

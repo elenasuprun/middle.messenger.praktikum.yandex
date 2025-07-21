@@ -1,6 +1,7 @@
 import { Nullable } from '../types/nullable.ts';
 import { Route } from './route.ts';
-import { Block } from './block.ts';
+import { BlockClassType } from '../types/blockClassType.ts';
+import { Routes } from '../enums/routes.ts';
 
 export class Router {
     public routes: Route[] = [];
@@ -22,7 +23,7 @@ export class Router {
         Router.__instance = this;
     }
 
-    use<TBlock extends typeof Block>(pathname: string, block: TBlock) {
+    use(pathname: string, block: BlockClassType): Router {
         const route = new Route(pathname, block, { rootQuery: this._rootQuery });
         this.routes.push(route);
 
@@ -61,7 +62,8 @@ export class Router {
         const route = this.getRoute(pathname);
 
         if (!route) {
-            throw new Error(`Route ${pathname} not found`);
+            this.go(Routes.Error404);
+            return;
         }
 
         if (this._currentRoute) {

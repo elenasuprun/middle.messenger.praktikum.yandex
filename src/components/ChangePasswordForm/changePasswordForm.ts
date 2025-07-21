@@ -2,7 +2,7 @@ import { Block } from '../../utils/classes/block.ts';
 import { Avatar } from '../Avatar/avatar.ts';
 import { Input } from '../Input/input.ts';
 import { Button } from '../Button/button.ts';
-import { OnSubmit } from '../../utils/functions/onSubmit.ts';
+// import { OnSubmit } from '../../utils/functions/onSubmit.ts';
 
 export class ChangePasswordForm extends Block {
     constructor() {
@@ -28,7 +28,7 @@ export class ChangePasswordForm extends Block {
                 type: 'submit'
             }),
             events: {
-                submit: OnSubmit
+                // submit: OnSubmit
             }
         });
     }

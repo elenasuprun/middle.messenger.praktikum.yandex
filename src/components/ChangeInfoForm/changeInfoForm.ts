@@ -3,7 +3,7 @@ import { Avatar } from '../Avatar/avatar.ts';
 import profileList from '../../utils/constants/profileList.ts';
 import { InputInfo } from '../InputInfo/inputInfo.ts';
 import { Button } from '../Button/button.ts';
-import { OnSubmit } from '../../utils/functions/onSubmit.ts';
+// import { OnSubmit } from '../../utils/functions/onSubmit.ts';
 
 export class ChangeInfoForm extends Block {
     constructor() {
@@ -22,7 +22,7 @@ export class ChangeInfoForm extends Block {
                 type: 'submit'
             }),
             events: {
-                submit: OnSubmit
+                // submit: OnSubmit
             }
         });
     }
