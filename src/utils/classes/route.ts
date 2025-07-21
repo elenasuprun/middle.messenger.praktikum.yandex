@@ -1,6 +1,5 @@
 import { Block } from './block.ts';
 import { Nullable } from '../types/nullable.ts';
-import { isEqual } from '../functions/isEqual.ts';
 import { render } from '../functions/render.ts';
 import { BlockClassType } from '../types/blockClassType.ts';
 
@@ -31,7 +30,7 @@ export class Route {
     }
 
     match(pathname: string): boolean {
-        return isEqual(pathname, this._pathname);
+        return pathname === this._pathname;
     }
 
     render(): void {

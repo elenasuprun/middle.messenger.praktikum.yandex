@@ -3,6 +3,7 @@ import store from '../classes/store.ts';
 import { StoreEvents } from '../enums/storeEvents.ts';
 import { BlockClassType } from '../types/blockClassType.ts';
 import { Indexed } from '../types/indexed.ts';
+import { isEqual } from './isEqual.ts';
 
 export const connect = (
     Component: BlockClassType,
@@ -10,9 +11,17 @@ export const connect = (
 ) => {
     return class extends Component {
         constructor(props: BlockProps) {
-            super({ ...props, ...mapStateToProps(store.getState()) });
+            let state = mapStateToProps(store.getState());
+            super({ ...props, ...state });
 
-            store.on(StoreEvents.UPDATED, () => this.setProps({ ...store.getState() }));
+            store.on(StoreEvents.UPDATED, () => {
+                const newState = mapStateToProps(store.getState());
+                if (!isEqual(state, newState)) {
+                    this.setProps({...newState});
+                }
+
+                state = newState;
+            });
         }
     };
 };
