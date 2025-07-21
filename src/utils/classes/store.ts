@@ -1,11 +1,12 @@
 import { EventBus } from './eventBus.ts';
 import { StoreEvents } from '../enums/storeEvents.ts';
 import { set } from '../functions/set.ts';
+import { Indexed } from '../types/indexed.ts';
 
 class Store extends EventBus {
-    private _state: object = {};
+    private _state: Indexed = {};
 
-    public getState(): object {
+    public getState(): Indexed {
         return this._state;
     }
 

@@ -9,6 +9,7 @@ import { Routes } from './utils/enums/routes.ts';
 import { Router } from './utils/classes/router.ts';
 import { ProfilePage } from './pages/profile/profilePage.ts';
 import { connect } from './utils/functions/connect.ts';
+import { Indexed } from './utils/types/indexed.ts';
 
 export class App {
     router: Router;
@@ -23,12 +24,14 @@ export class App {
         this.router
             .use(Routes.Error404, NotFoundPage)
             .use(Routes.Error500, ErrorPage)
-            .use(Routes.Login, connect(LoginPage))
-            .use(Routes.SignUp, connect(SignUpPage))
-            .use(Routes.Profile, connect(ProfilePage))
-            .use(Routes.ChangePassword, connect(ChangePasswordPage))
-            .use(Routes.ChangeInfo, connect(ChangeInfoPage))
-            .use(Routes.Chat, connect(ChatPage))
+            .use(Routes.Login, LoginPage)
+            .use(Routes.SignUp, SignUpPage)
+            .use(Routes.Profile, connect(ProfilePage, (state: Indexed) => ({
+                user: state.user
+            })))
+            .use(Routes.ChangePassword, ChangePasswordPage)
+            .use(Routes.ChangeInfo, ChangeInfoPage)
+            .use(Routes.Chat, ChatPage)
             .start();
     }
 }

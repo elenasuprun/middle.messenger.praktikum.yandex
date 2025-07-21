@@ -1,7 +1,6 @@
 import { Block } from '../../utils/classes/block.ts';
 import { Avatar } from '../../components/Avatar/avatar.ts';
 import { Link } from '../../components/Link/link.ts';
-import profileList from '../../utils/constants/profileList.ts';
 import { Routes } from '../../utils/enums/routes.ts';
 import { ButtonBack } from '../../components/ButtonBack/buttonBack.ts';
 import { Button } from '../../components/Button/button.ts';
@@ -12,7 +11,7 @@ export class ProfilePage extends Block {
 
     constructor() {
         super({
-            profileList,
+            user: {},
             Avatar: new Avatar({}),
             LinkChangeProfile: new Link({
                 text: 'Изменить данные',
