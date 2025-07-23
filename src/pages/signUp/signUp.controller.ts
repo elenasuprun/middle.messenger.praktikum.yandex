@@ -1,4 +1,4 @@
-import { SignUpApi } from '../../api/signup.api.ts';
+import { SignUpApi } from './api/signup.api.ts';
 
 export class SignUpController {
     private _signUpApi = new SignUpApi();

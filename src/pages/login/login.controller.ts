@@ -1,8 +1,8 @@
-import { LoginApi } from '../../api/login.api.ts';
+import { LoginApi } from './api/login.api.ts';
 import { Router } from '../../utils/classes/router.ts';
 import { Routes } from '../../utils/enums/routes.ts';
 import { AuthApi } from '../../api/auth.api.ts';
-import { default as Store} from '../../utils/classes/store.ts';
+import Store from '../../utils/classes/store.ts';
 
 export class LoginController {
     private _loginApi = new LoginApi();

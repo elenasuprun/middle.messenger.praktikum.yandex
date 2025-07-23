@@ -1,5 +1,5 @@
-import { ChatsApi } from '../../api/chats.api.ts';
-import { default as Store } from '../../utils/classes/store.ts';
+import { ChatsApi } from './api/chats.api.ts';
+import Store from '../../utils/classes/store.ts';
 
 export class ChatController {
     private _chatsApi = new ChatsApi();

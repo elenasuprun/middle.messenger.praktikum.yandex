@@ -32,6 +32,7 @@ export class Input extends Block {
                         class="{{inputClassName}}"
                         type="{{type}}"
                         name="{{name}}"
+                        value="{{value}}"
                         {{#if placeholder}}
                             placeholder="{{placeholder}}"
                         {{/if}}

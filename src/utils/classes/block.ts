@@ -20,7 +20,7 @@ export abstract class Block {
 
     public eventBus: () => EventBus;
 
-    protected readonly props: ProxyHandler<BlockProps>;
+    protected readonly props: BlockProps;
     protected readonly children: BlockProps;
     protected readonly lists: Record<string | symbol, unknown[]>;
 
@@ -133,7 +133,7 @@ export abstract class Block {
         this.element.style.display = 'none';
     }
 
-    private _makePropsProxy(props: BlockProps): ProxyHandler<BlockProps> {
+    private _makePropsProxy(props: BlockProps): BlockProps {
         return new Proxy(props, {
             get: <K extends keyof BlockProps>(target: BlockProps, prop: K): unknown => {
                 const value: unknown = target[prop];
@@ -141,7 +141,7 @@ export abstract class Block {
             },
             set: <K extends keyof BlockProps>(target: BlockProps, prop: K, value: BlockProps[K]): boolean => {
                 target[prop] = value;
-                this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target });
+                this.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
                 return true;
             },
             deleteProperty: (): boolean => {
@@ -179,7 +179,9 @@ export abstract class Block {
 
         this.removeEvents();
 
-        this._element.innerHTML = '';
+        if (this._element && block.firstElementChild) {
+            this._element.replaceWith(block.firstElementChild);
+        }
         this._element = block.firstElementChild as HTMLElement;
 
         this.addEvents();
@@ -193,7 +195,7 @@ export abstract class Block {
         }
 
         for (const [type, listener] of Object.entries(events)) {
-            this.element.addEventListener(type, listener);
+            this._element.addEventListener(type, listener);
         }
     }
 

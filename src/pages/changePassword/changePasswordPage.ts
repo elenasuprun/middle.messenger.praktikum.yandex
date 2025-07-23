@@ -1,6 +1,6 @@
-import { Block } from '../utils/classes/block.ts';
-import { ChangePasswordForm } from '../components/ChangePasswordForm/changePasswordForm.ts';
-import { ButtonBack } from '../components/ButtonBack/buttonBack.ts';
+import { Block } from '../../utils/classes/block.ts';
+import { ChangePasswordForm } from '../../components/ChangePasswordForm/changePasswordForm.ts';
+import { ButtonBack } from '../../components/ButtonBack/buttonBack.ts';
 
 export class ChangePasswordPage extends Block {
     constructor() {

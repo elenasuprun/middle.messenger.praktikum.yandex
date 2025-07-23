@@ -12,8 +12,7 @@ export const merge = (lhs: Indexed, rhs: Indexed): Indexed => {
             } else {
                 lhs[prop] = rhs[prop];
             }
-        } catch (e) {
-            console.log(e);
+        } catch (_) {
             lhs[prop] = rhs[prop];
         }
     }

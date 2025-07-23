@@ -4,7 +4,7 @@ import { LoginController } from './login.controller.ts';
 import { getDataFromForm, validateForm } from '../../utils/functions/onSubmit.ts';
 
 export class LoginPage extends Block {
-    private controller = new LoginController();
+    private _loginController = new LoginController();
 
     constructor() {
         super({
@@ -20,7 +20,7 @@ export class LoginPage extends Block {
 
                         if (validity) {
                             try {
-                                this.controller.login(data);
+                                this._loginController.login(data);
                             } catch (error) {
                                 console.log(error);
                             }

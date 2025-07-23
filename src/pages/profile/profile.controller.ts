@@ -17,12 +17,12 @@ export class ProfileController {
             });
     }
 
-    async getUserInfo(): Promise<void> {
-        return this._authApi
+    getUserInfo(): void {
+        this._authApi
             .request()
             .then(response => {
                 if (response.status === 200) {
-                    setTimeout(() => Store.set('user', JSON.parse(response.response)), 5000);
+                    Store.set('user', JSON.parse(response.response));
                 }
             });
     }

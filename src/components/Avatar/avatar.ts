@@ -14,9 +14,6 @@ export class Avatar extends Block {
                         </div>
                         <div class="avatar--icon wrapper__center"></div>
                     </div>
-                    {{#if username}}
-                        <p class="avatar--username">{{username}}</p>
-                    {{/if}}
                 </div>`;
     }
 }

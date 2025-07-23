@@ -1,5 +1,5 @@
-import { BaseApi } from '../utils/classes/base-api.ts';
-import { HTTPTransport } from '../utils/classes/http.ts';
+import { BaseApi } from '../../../utils/classes/base-api.ts';
+import { HTTPTransport } from '../../../utils/classes/http.ts';
 
 export class LoginApi extends BaseApi {
     private _http = new HTTPTransport('/auth');

@@ -8,4 +8,5 @@ export type TInput = TBase & {
     name: string;
     placeholder: string;
     message: string;
+    value?: string;
 }

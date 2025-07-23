@@ -1,9 +1,9 @@
-import { Block } from '../../utils/classes/block.ts';
+import { Block, BlockProps } from '../../utils/classes/block.ts';
 import { Avatar } from '../Avatar/avatar.ts';
 import profileList from '../../utils/constants/profileList.ts';
 import { InputInfo } from '../InputInfo/inputInfo.ts';
 import { Button } from '../Button/button.ts';
-// import { OnSubmit } from '../../utils/functions/onSubmit.ts';
+import { User } from '../../utils/models/user.model.ts';
 
 export class ChangeInfoForm extends Block {
     constructor() {
@@ -22,10 +22,25 @@ export class ChangeInfoForm extends Block {
                 type: 'submit'
             }),
             events: {
-                // submit: OnSubmit
+                submit: (e: Event) => {
+                    e.preventDefault();
+                }
             }
         });
     }
+
+    override componentDidUpdate(newProps: BlockProps) {
+        if (!newProps.user) {
+            return;
+        }
+
+        this.lists.InputProfileList
+            .forEach((item: any) => {
+                const input = item.children.Input;
+                input.setProps({ value: (newProps.user as User)[input.props.name as keyof User] });
+            });
+    }
+
     override render(): string {
         return `<form class="profile__info--container">
                     {{{ Avatar }}}
