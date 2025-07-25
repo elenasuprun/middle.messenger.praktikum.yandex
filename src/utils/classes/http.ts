@@ -8,7 +8,7 @@ const enum HttpMethods {
 export type HttpOptions = {
     method: HttpMethods;
     headers: Record<string, string>;
-    data: object;
+    data: object | string;
     timeout: number;
 }
 
@@ -67,12 +67,12 @@ export class HTTPTransport {
             if (method === HttpMethods.GET) {
                 xhr.send();
             } else {
-                xhr.send(JSON.stringify(data) as XMLHttpRequestBodyInit);
+                xhr.send(data as XMLHttpRequestBodyInit);
             }
         });
     };
 
-    private _queryStringify(data: object): string {
+    private _queryStringify(data: object | string): string {
         if (typeof data !== 'object') {
             throw new Error('Data must be object');
         }

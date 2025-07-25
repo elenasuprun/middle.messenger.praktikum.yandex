@@ -10,6 +10,15 @@
 
     position: relative;
 
+    &__img {
+        object-fit: cover;
+        width: inherit;
+        height: inherit;
+        z-index: 10;
+        position: absolute;
+        border-radius: inherit;
+    }
+
     &--icon {
         fill: #CDCDCD;
         background: url("/static/avatar.svg") no-repeat;

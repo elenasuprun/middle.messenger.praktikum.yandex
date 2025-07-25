@@ -20,8 +20,8 @@ export abstract class Block {
 
     public eventBus: () => EventBus;
 
-    protected readonly props: BlockProps;
-    protected readonly children: BlockProps;
+    public readonly children: BlockProps;
+    public readonly props: BlockProps;
     protected readonly lists: Record<string | symbol, unknown[]>;
 
     protected _element: HTMLElement;
@@ -118,7 +118,7 @@ export abstract class Block {
     }
 
     componentDidUpdate(...args: unknown[]): void {
-        console.log(...args);
+        console.log(args);
     }
 
     dispatchComponentDidMount(): void {
@@ -176,13 +176,14 @@ export abstract class Block {
 
     private _render(): void {
         const block = this.compile(this.render()) as DocumentFragment;
+        const newElement = block.firstElementChild as HTMLElement;
 
         this.removeEvents();
 
         if (this._element && block.firstElementChild) {
-            this._element.replaceWith(block.firstElementChild);
+            this._element.replaceWith(newElement);
         }
-        this._element = block.firstElementChild as HTMLElement;
+        this._element = newElement;
 
         this.addEvents();
     }

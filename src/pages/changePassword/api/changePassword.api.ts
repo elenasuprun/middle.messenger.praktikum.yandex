@@ -1,16 +1,16 @@
 import { BaseApi } from '../../../utils/classes/base-api.ts';
 import { HTTPTransport } from '../../../utils/classes/http.ts';
 
-export class LoginApi extends BaseApi {
-    private _http = new HTTPTransport('/auth');
+export class ChangePasswordApi extends BaseApi {
+    private _http = new HTTPTransport('/user/password');
 
-    override create(data: object): Promise<XMLHttpRequest> {
-        return this._http.post('/signin', {
+    update(data: string): void {
+        this._http.put('', {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            data: JSON.stringify(data)
-        })
+            data
+        });
     }
 }

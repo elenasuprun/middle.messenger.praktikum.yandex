@@ -17,7 +17,7 @@ class ChangeInfoPage extends Block {
     }
 
     override componentDidUpdate(newProps: BlockProps) {
-        (this.children.ChangeInfoForm as Block).setProps({ ...mapUserFromState(newProps) });
+        (this.children.ChangeInfoForm as Block).setProps(mapUserFromState(newProps));
     }
 
     override render(): string {

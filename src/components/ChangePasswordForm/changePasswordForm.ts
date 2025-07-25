@@ -1,10 +1,16 @@
 import { Block } from '../../utils/classes/block.ts';
-import { Avatar } from '../Avatar/avatar.ts';
+import Avatar from '../Avatar/avatar.ts';
 import { Input } from '../Input/input.ts';
 import { Button } from '../Button/button.ts';
-// import { OnSubmit } from '../../utils/functions/onSubmit.ts';
+import { connect } from '../../utils/functions/connect.ts';
+import { mapUserFromState } from '../../utils/functions/mapUserFromState.ts';
+import { ChangePasswordController } from '../../pages/changePassword/changePasswordController.ts';
+import { getDataFromForm, validateForm } from '../../utils/functions/onSubmit.ts';
+import { ChangePassword } from '../../utils/models/changePassword.model.ts';
 
-export class ChangePasswordForm extends Block {
+class ChangePasswordForm extends Block {
+    private _changePasswordController = new ChangePasswordController();
+
     constructor() {
         super({
             Avatar: new Avatar({}),
@@ -28,7 +34,21 @@ export class ChangePasswordForm extends Block {
                 type: 'submit'
             }),
             events: {
-                // submit: OnSubmit
+                submit: (e: Event) => {
+                    e.preventDefault();
+                    const form = e.target as HTMLFormElement;
+
+                    const data = getDataFromForm(form) as unknown as ChangePassword;
+                    const validity = validateForm(form);
+
+                    if (validity) {
+                        try {
+                            this._changePasswordController.changePassword(data);
+                        } catch (error) {
+                            console.log(error);
+                        }
+                    }
+                }
             }
         });
     }
@@ -54,3 +74,5 @@ export class ChangePasswordForm extends Block {
                 </form>`;
     }
 }
+
+export default connect(ChangePasswordForm, mapUserFromState);

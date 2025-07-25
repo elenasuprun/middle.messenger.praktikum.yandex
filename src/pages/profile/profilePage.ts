@@ -1,5 +1,5 @@
-import { Block, BlockProps } from '../../utils/classes/block.ts';
-import { Avatar } from '../../components/Avatar/avatar.ts';
+import { Block } from '../../utils/classes/block.ts';
+import Avatar from '../../components/Avatar/avatar.ts';
 import { Link } from '../../components/Link/link.ts';
 import { Routes } from '../../utils/enums/routes.ts';
 import { ButtonBack } from '../../components/ButtonBack/buttonBack.ts';
@@ -7,13 +7,19 @@ import { Button } from '../../components/Button/button.ts';
 import { ProfileController } from './profile.controller.ts';
 import { connect } from '../../utils/functions/connect.ts';
 import { mapUserFromState } from '../../utils/functions/mapUserFromState.ts';
+import { Popover } from '../../components/Popover/popover.ts';
+import { openPopover } from '../../utils/functions/popoverHandlers.ts';
 
 class ProfilePage extends Block {
     private _profileController = new ProfileController();
 
     constructor() {
         super({
-            Avatar: new Avatar({}),
+            Avatar: new Avatar({
+                events: {
+                    click: openPopover
+                }
+            }),
             LinkChangeProfile: new Link({
                 text: 'Изменить данные',
                 url: Routes.ChangeInfo
@@ -29,14 +35,11 @@ class ProfilePage extends Block {
                     click: () => this._profileController.logout()
                 }
             }),
-            ButtonBack: new ButtonBack()
+            ButtonBack: new ButtonBack(),
+            Popover: new Popover()
         });
 
         this._profileController.getUserInfo();
-    }
-
-    override componentDidUpdate(oldProps: BlockProps, newProps: BlockProps): void {
-        console.log(newProps);
     }
 
     override render(): string {
@@ -81,6 +84,7 @@ class ProfilePage extends Block {
                             </nav>
                         </div>
                     </main>
+                {{{ Popover }}}
                 </div>`;
     }
 }
